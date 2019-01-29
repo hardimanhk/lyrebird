@@ -1,0 +1,9 @@
+.border {
+    border: 1px green solid;
+    background: lightgreen;
+}
+
+.noBorder {
+    border: 1px grey solid;
+    background: lightgray;
+}

@@ -1,0 +1,9 @@
+.thumb-container {
+    padding-left: 100px;
+    padding-right: 100px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}

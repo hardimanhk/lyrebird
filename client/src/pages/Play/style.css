@@ -1,0 +1,80 @@
+.play {
+    padding-top: 10px;
+    text-align: center;
+}
+
+#play-canvas {
+    border: 1px black solid;
+    width: 602px;
+    z-index: 30;
+}
+
+#timer {
+    color: red;
+    font-size: 100px;
+}
+
+.game-container {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.game-sub {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.games {
+    background-size: cover;
+    background-position: 50%;
+    margin: 8px 25px;
+    cursor: pointer;
+    border: 1px black solid;
+}
+
+.their-turn {
+    background-size: cover;
+    background-position: 50%;
+    margin: 8px 25px;
+}
+
+.my-turn {
+    background-size: cover;
+    background-position: 50%;
+    margin: 8px 25px;
+}
+
+.show-photo {
+    border: 1px black solid;
+    margin: 0px auto;
+}
+
+.alert {
+    opacity: 1;
+}
+
+.loading {
+    font-size: 100px;
+    display: block;
+    text-align: center;
+}
+
+.loading .spinning {
+    margin-right: 7px;
+    top: 2px;
+    animation: spin 1s infinite linear;
+  }
+  @keyframes spin {
+    from { transform: scale(1) rotate(0deg); }
+    to { transform: scale(1) rotate(360deg); }
+  }

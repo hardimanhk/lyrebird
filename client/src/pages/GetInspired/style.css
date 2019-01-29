@@ -1,0 +1,22 @@
+.getInspired {
+    padding-top: 10px;
+    text-align: center;
+  }
+
+#image-container {
+    padding-left: 100px;
+    padding-right: 100px;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.canvas {
+    background-size: cover;
+    background-position: 50%;
+    margin: 8px 25px;
+    cursor: pointer;
+    border: 1px black solid;
+}
