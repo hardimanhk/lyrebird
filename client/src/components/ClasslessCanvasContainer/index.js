@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Row, Col } from "react-bootstrap";
 import Toolbar from "../Toolbar";
 import Image from "../Image";
 import ImageModal from "../ImageModal";
@@ -26,6 +27,7 @@ const ClasslessCanvasContainer = (props) => {
     const [saveIsLoading, setSaveIsLoading] = useState(null);
 
     const canvasRef = useRef();
+    const drawCanvasRef = useRef();
 
     function handleModal(content) {
         setModal(true);
@@ -115,42 +117,50 @@ const ClasslessCanvasContainer = (props) => {
         loadImages();
         loadBackground();
         setIsLoading(false);
+        setCanvasWidth(drawCanvasRef.current.offsetWidth - 2);
     }, []);
 
     return(
         <div>
             {overlay ? (
-                <div className="canvas-container">
-                    <Toolbar 
-                        overlay={overlay} 
-                        setOverlay={setOverlay}
-                        brushRadius={brushRadius}
-                        handleInputChange={handleInputChange}
-                        setColor={setColor}
-                        saveCanvas={saveCanvas}
-                        clear={clearCanvas}
-                        undo={undo}
-                    />
-                    <div className="draw-canvas">
-                    <CanvasDraw  
-                        ref={canvasRef}
-                        canvasWidth={canvasWidth}
-                        canvasHeight={canvasHeight}
-                        brushRadius={brushRadius}
-                        lazyRadius={lazyRadius}
-                        brushColor={color}
-                        saveData={saveData}
-                        imgSrc={background}
-                    />
-                    </div>
-                </div>
+                <Row className="canvas-container">
+                    <Col xs={12} md={2}>
+                        <Toolbar 
+                            overlay={overlay} 
+                            setOverlay={setOverlay}
+                            brushRadius={brushRadius}
+                            handleInputChange={handleInputChange}
+                            setColor={setColor}
+                            saveCanvas={saveCanvas}
+                            clear={clearCanvas}
+                            undo={undo}
+                        />
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <div className="draw-canvas" ref={drawCanvasRef}>
+                        <CanvasDraw  
+                            ref={canvasRef}
+                            canvasWidth={canvasWidth}
+                            canvasHeight={canvasHeight}
+                            brushRadius={brushRadius}
+                            lazyRadius={lazyRadius}
+                            brushColor={color}
+                            saveData={saveData}
+                            imgSrc={background}
+                        />
+                        </div>
+                    </Col>
+                </Row>
             ) : (
-                <div className="canvas-container">
+                <Row className="canvas-container">
+                    <Col sm={12} md={5}>
                     <Image 
                         imageURL={background}
                         name={backgroundName}
                         handleModal={handleModal} 
                     />
+                    </Col>
+                    <Col sm={12} md={2}>
                     <Toolbar 
                         overlay={overlay} 
                         setOverlay={setOverlay}
@@ -161,6 +171,8 @@ const ClasslessCanvasContainer = (props) => {
                         clear={clearCanvas}
                         undo={undo}
                     />
+                    </Col>
+                    <Col sm={12} md={5}>
                     <div className="draw-canvas">
                      <CanvasDraw 
                         ref={canvasRef}
@@ -173,7 +185,8 @@ const ClasslessCanvasContainer = (props) => {
                         imgSrc={""}
                     />
                     </div>
-                </div>
+                    </Col>
+                </Row>
             )}  
             <ImageModal 
                 show={showModal} 
