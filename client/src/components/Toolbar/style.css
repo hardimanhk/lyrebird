@@ -1,8 +1,6 @@
 .toolbar {
     padding: 0px 5px 0px 5px;
-    height: 200px;
-    width: 7%;
-    display: flex;
+    display: block;
     flex-wrap: wrap;
     justify-content: center;
 }

@@ -5,9 +5,7 @@ import Image from "../Image";
 import ImageModal from "../ImageModal";
 import { API, Storage } from "aws-amplify";
 import CanvasDraw from "react-canvas-draw";
-import { s3Upload } from "../../libraries/awsLibrary";
 import "./style.css";
-import { ConsoleLogger } from "@aws-amplify/core";
 
 const ClasslessCanvasContainer = (props) => {
     const [overlay, setOverlay] = useState(true);
@@ -15,7 +13,7 @@ const ClasslessCanvasContainer = (props) => {
     const [canvasHeight, setCanvasHeight] = useState(600);
     const [brushRadius, setBrushRadius] = useState(10);
     const [lazyRadius, setLazyRadius] = useState(2);
-    const [color, setColor] = useState("ffc600");
+    const [color, setColor] = useState("#ffc600");
     const [background, setBackground] = useState("");
     const [saveData, setSaveData] = useState(null);
     const [backgroundName, setBackgroundName] = useState("imageName");
@@ -25,9 +23,13 @@ const ClasslessCanvasContainer = (props) => {
     const [attachments, setAttachments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [saveIsLoading, setSaveIsLoading] = useState(null);
+    const [isColorChange, setIsColorChange] = useState(false);
+    const [isDisplayed, setIsDisplayed] = useState(false);
+
 
     const canvasRef = useRef();
     const drawCanvasRef = useRef();
+    let timerId;
 
     function handleModal(content) {
         setModal(true);
@@ -113,6 +115,20 @@ const ClasslessCanvasContainer = (props) => {
         canvasRef.current.undo();
     }
 
+    function colorChanger() {
+        setIsColorChange(true);
+        timerId = setInterval(() => {
+            setColor({
+              color: "#" + Math.floor(Math.random() * 16777215).toString(16)
+            });
+          }, 2000);
+    }
+
+    function cancelColorChange() {
+        clearInterval(timerId);
+        setIsColorChange(false);
+    }
+
     useEffect(() => {
         loadImages();
         loadBackground();
@@ -130,7 +146,13 @@ const ClasslessCanvasContainer = (props) => {
                             setOverlay={setOverlay}
                             brushRadius={brushRadius}
                             handleInputChange={handleInputChange}
+                            color={color}
                             setColor={setColor}
+                            isDisplayed={isDisplayed}
+                            setIsDisplayed={setIsDisplayed}
+                            colorChanger={colorChanger}
+                            cancelColorChange={cancelColorChange}
+                            isColorChange={isColorChange}
                             saveCanvas={saveCanvas}
                             clear={clearCanvas}
                             undo={undo}
@@ -166,7 +188,13 @@ const ClasslessCanvasContainer = (props) => {
                         setOverlay={setOverlay}
                         brushRadius={brushRadius}
                         handleInputChange={handleInputChange}
+                        color={color}
                         setColor={setColor}
+                        isDisplayed={isDisplayed}
+                        setIsDisplayed={setIsDisplayed}
+                        colorChanger={colorChanger}
+                        cancelColorChange={cancelColorChange}
+                        isColorChange={isColorChange}
                         saveCanvas={saveCanvas}
                         clear={clearCanvas}
                         undo={undo}
