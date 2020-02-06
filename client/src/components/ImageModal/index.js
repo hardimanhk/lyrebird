@@ -31,6 +31,7 @@ return (
       </Modal.Header>
       <Modal.Body>
         <h4>{bodyContent}</h4>
+        <p>**Please note: you need to go to your profile to upload images to choose from.</p>
         <p> Click an image to set it as your background. </p>
         <ThumbnailContainer images={URLs} imageNames={imageNames} setBackground={props.setBackground} setBackgroundName={props.setBackgroundName} />
       </Modal.Body>

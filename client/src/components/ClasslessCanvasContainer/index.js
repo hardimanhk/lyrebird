@@ -130,7 +130,9 @@ const ClasslessCanvasContainer = (props) => {
     }
 
     useEffect(() => {
-        loadImages();
+        if (props.isAuthenticated) {
+            loadImages();
+        }
         loadBackground();
         setIsLoading(false);
         setCanvasWidth(drawCanvasRef.current.offsetWidth - 2);
