@@ -87,9 +87,15 @@ class App extends Component {
                       </NavDropdown>
                     </Fragment>
                   : <NavDropdown eventKey={5} title="About" id="basic-nav-dropdown">
-                      <MenuItem eventKey={5.1}>Demo</MenuItem>
-                      <MenuItem eventKey={5.2}>The Big Idea</MenuItem>
-                      <MenuItem eventKey={5.3}>Credits</MenuItem>
+                        <LinkContainer exact to={'/about#demo'}>
+                          <MenuItem eventKey={5.1}>Demo</MenuItem>
+                        </LinkContainer>
+                        <LinkContainer exact to={"/about#about"}>
+                          <MenuItem eventKey={5.2}>The Big Idea</MenuItem>
+                        </LinkContainer>
+                        <LinkContainer exact to="/about#credits">
+                          <MenuItem eventKey={5.3}>Credits</MenuItem>
+                        </LinkContainer>
                     </NavDropdown>
                 }
               </Nav>
